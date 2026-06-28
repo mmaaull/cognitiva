@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@keyframes scene-enter {
+	from {
+		opacity: 0;
+		transform: translateY(16px) scale(0.985);
+		filter: blur(8px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+		filter: blur(0);
+	}
+}
+
+@keyframes dashboard-enter {
+	from {
+		opacity: 0;
+		transform: translateY(10px) scale(0.992);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+.auth-scene {
+	animation: scene-enter 360ms cubic-bezier(0.22, 1, 0.36, 1);
+	transform-origin: top center;
+}
+
+.dashboard-scene {
+	animation: dashboard-enter 420ms cubic-bezier(0.22, 1, 0.36, 1);
+	transform-origin: top center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.auth-scene,
+	.dashboard-scene {
+		animation: none;
+	}
+}
