@@ -6,10 +6,10 @@ import AnalyticsPage from './components/AnalyticsPage';
 import TeacherDashboard from './components/TeacherDashboard'; // Komponen Baru
 import { WelcomePage, LoginPage, RegisterPage } from './components/AuthPages';
 
-const AUTH_STAGE_KEY = 'thinker.authStage';
-const AUTH_ROLE_KEY = 'thinker.userRole';
-const AUTH_USER_KEY = 'thinker.authUser';
-const AUTH_USERS_KEY = 'thinker.authUsers';
+const AUTH_STAGE_KEY = 'cognitiva.authStage';
+const AUTH_ROLE_KEY = 'cognitiva.userRole';
+const AUTH_USER_KEY = 'cognitiva.authUser';
+const AUTH_USERS_KEY = 'cognitiva.authUsers';
 
 const AUTH_STAGES = ['welcome', 'login', 'register', 'authenticated'];
 const DEFAULT_ROLE = 'student';
@@ -18,16 +18,81 @@ const DEMO_USERS = [
   {
     id: 'demo-teacher',
     name: 'Dr. Budi',
-    email: 'admin@thinker.ai',
-    password: 'thinker-demo',
+    email: 'admin@cognitiva.ai',
+    password: 'cognitiva-demo',
     role: 'teacher'
   },
   {
     id: 'demo-student',
     name: 'Faiz',
-    email: 'student@thinker.ai',
-    password: 'thinker-demo',
+    email: 'student@cognitiva.ai',
+    password: 'cognitiva-demo',
     role: 'student'
+  }
+];
+
+const STUDENT_CHAT_HISTORY = [
+  {
+    id: 'h1',
+    title: 'Sesi: Dampak AI dalam Pendidikan',
+    prompt: 'Saya ingin membahas dampak AI pada pendidikan agar tidak terjadi copy-paste instan.',
+    reflection: 'AI membantu belajar, tetapi harus dibatasi dengan proses refleksi agar siswa tetap berpikir mandiri.',
+    sessionMeta: {
+      intention: 'concept-exploration',
+      risk: { index: 66, level: 'medium' },
+      routed: { reason: 'Model router memilih mode scaffolding konseptual untuk pembahasan reflektif.' },
+      model: 'Gemini Pro'
+    },
+    messages: [
+      { role: 'user', text: 'Saya ingin membahas dampak AI pada pendidikan agar tidak terjadi copy-paste instan.' },
+      { role: 'ai', agent: 'Socratic Agent', text: 'Klaim utama apa yang ingin kamu buktikan terlebih dahulu terkait dampak AI di kelas?' },
+      { role: 'user', text: 'Klaim saya: AI bermanfaat jika mendorong refleksi, bukan memberi jawaban final.' },
+      { role: 'ai', agent: 'Reasoning Agent', text: 'Susun alur logikanya: masalah utama, penyebab, lalu solusi yang kamu tawarkan.' },
+      { role: 'ai', agent: 'Evidence Checker Agent', text: 'Tambahkan bukti: data, studi, atau contoh nyata penggunaan AI di tugas akademik.' },
+      { role: 'ai', agent: 'Counter-Argument Agent', text: 'Bagaimana jika ada pihak yang berpendapat AI justru selalu meningkatkan produktivitas belajar?' },
+      { role: 'user', text: 'Saya jawab: produktivitas naik, tetapi kualitas berpikir bisa turun jika tanpa guardrail.' },
+      { role: 'ai', agent: 'Reflection Coach Agent', text: 'Refleksikan kembali: bagian argumenmu mana yang masih lemah dan perlu diperkuat?' },
+      { role: 'ai', agent: 'Argument Evaluator Agent', text: 'Evaluasi sementara: struktur argumen sudah kuat, bukti empiris perlu ditambah agar lebih meyakinkan.' },
+      { role: 'ai', agent: 'Summary Agent', text: 'Ringkasan: AI sebaiknya diposisikan sebagai mitra berpikir dengan sistem refleksi, bukan mesin jawaban instan.' }
+    ]
+  },
+  {
+    id: 'h2',
+    title: 'Sesi: Analisis Taksonomi Bloom',
+    prompt: 'Tolong bantu saya mengembangkan analisis Bloom tanpa langsung memberi jawaban jadi.',
+    reflection: 'Saya ingin mulai dari level analisis dan evaluasi agar argumen esai lebih dalam.',
+    sessionMeta: {
+      intention: 'concept-exploration',
+      risk: { index: 58, level: 'medium' },
+      routed: { reason: 'Model router mengarahkan ke pembahasan bertahap berbasis reasoning dan evaluasi.' },
+      model: 'GPT-4o'
+    },
+    messages: [
+      { role: 'user', text: 'Tolong bantu saya mengembangkan analisis Bloom tanpa langsung memberi jawaban jadi.' },
+      { role: 'ai', agent: 'Socratic Agent', text: 'Pada level Bloom mana analisismu saat ini, dan level mana yang ingin kamu capai?' },
+      { role: 'user', text: 'Saat ini baru memahami konsep, saya ingin naik ke analisis dan evaluasi.' },
+      { role: 'ai', agent: 'Reasoning Agent', text: 'Bagus. Mari pecah menjadi: identifikasi komponen, relasi antarkomponen, lalu nilai kekuatan argumen.' },
+      { role: 'ai', agent: 'Summary Agent', text: 'Ringkas: kamu perlu mengubah uraian deskriptif menjadi analisis perbandingan + evaluasi berbasis bukti.' }
+    ]
+  },
+  {
+    id: 'h3',
+    title: 'Sesi: Review Arsitektur Cognitiva',
+    prompt: 'Bantu review arsitektur Cognitiva agar alurnya konsisten dari prompt sampai output.',
+    reflection: 'Fokus saya memastikan guardrail dan orchestrator benar-benar berjalan sebelum summary.',
+    sessionMeta: {
+      intention: 'draft-review',
+      risk: { index: 44, level: 'medium' },
+      routed: { reason: 'Model router memilih mode review argumen agar evaluasi arsitektur lebih presisi.' },
+      model: 'Claude 3.5'
+    },
+    messages: [
+      { role: 'user', text: 'Bantu review arsitektur Cognitiva agar alurnya konsisten dari prompt sampai output.' },
+      { role: 'ai', agent: 'Argument Evaluator Agent', text: 'Kekuatan arsitekturmu: pembagian layer jelas. Celah utama: definisi trigger tiap guardrail perlu dipertegas.' },
+      { role: 'ai', agent: 'Counter-Argument Agent', text: 'Jika pengguna mencoba bypass refleksi, mekanisme fallback apa yang kamu siapkan?' },
+      { role: 'user', text: 'Saya akan pakai response limiter dan wajibkan reflection requirement sebelum reveal.' },
+      { role: 'ai', agent: 'Summary Agent', text: 'Ringkasan review: arsitektur sudah tepat untuk prototipe, lanjutkan dengan aturan trigger yang lebih eksplisit.' }
+    ]
   }
 ];
 
@@ -75,6 +140,7 @@ export default function App() {
   const [userRole, setUserRole] = useState(storedAuth.authUser?.role === 'teacher' ? 'teacher' : storedAuth.userRole); // 'student' atau 'teacher'
   const [authStage, setAuthStage] = useState(storedAuth.authStage); // 'welcome', 'login', 'register', 'authenticated'
   const [authUser, setAuthUser] = useState(storedAuth.authUser);
+  const [selectedHistoryId, setSelectedHistoryId] = useState(STUDENT_CHAT_HISTORY[0].id);
 
   const [activeAgent, setActiveAgent] = useState({
     id: 'socratic',
@@ -97,7 +163,15 @@ export default function App() {
     const storedUsers = readStorageValue(AUTH_USERS_KEY, null);
     if (!Array.isArray(storedUsers) || storedUsers.length === 0) {
       writeStorageValue(AUTH_USERS_KEY, DEMO_USERS);
+      return;
     }
+
+    const normalizedStored = [...storedUsers];
+    DEMO_USERS.forEach((demoUser) => {
+      const exists = normalizedStored.some((user) => normalizeEmail(user.email) === normalizeEmail(demoUser.email));
+      if (!exists) normalizedStored.push(demoUser);
+    });
+    writeStorageValue(AUTH_USERS_KEY, normalizedStored);
   }, []);
 
   useEffect(() => {
@@ -132,14 +206,6 @@ export default function App() {
     }));
   };
 
-  // Fungsi otomatis ganti halaman default saat ganti role
-  const handleRoleChange = (role) => {
-    const nextRole = role === 'teacher' ? 'teacher' : 'student';
-    setUserRole(nextRole);
-    setAuthUser(prevUser => (prevUser ? { ...prevUser, role: nextRole } : prevUser));
-    setActivePage(nextRole === 'teacher' ? 'teacher-overview' : 'chat');
-  };
-
   const handleAuthenticated = (nextUser) => {
     const nextRole = nextUser?.role === 'teacher' ? 'teacher' : 'student';
     const safeUser = {
@@ -152,6 +218,9 @@ export default function App() {
     setUserRole(nextRole);
     setAuthUser(safeUser);
     setActivePage(nextRole === 'teacher' ? 'teacher-overview' : 'chat');
+    if (nextRole === 'student') {
+      setSelectedHistoryId(STUDENT_CHAT_HISTORY[0].id);
+    }
     setAuthStage('authenticated');
 
     return { ok: true, user: safeUser };
@@ -161,11 +230,20 @@ export default function App() {
     setAuthStage('welcome');
     setAuthUser(null);
     setActivePage('chat');
+    setSelectedHistoryId(STUDENT_CHAT_HISTORY[0].id);
   };
+
+  const selectedHistorySession = STUDENT_CHAT_HISTORY.find((item) => item.id === selectedHistoryId) || STUDENT_CHAT_HISTORY[0];
 
   const handleLogin = ({ email, password }) => {
     const normalizedEmail = normalizeEmail(email);
-    const matchedUser = readUsers().find((user) => normalizeEmail(user.email) === normalizedEmail);
+    const aliasEmail = normalizedEmail
+      .replace('@thinker.ai', '@cognitiva.ai')
+      .replace('@cognitiva.ai', '@thinker.ai');
+    const matchedUser = readUsers().find((user) => {
+      const userEmail = normalizeEmail(user.email);
+      return userEmail === normalizedEmail || userEmail === aliasEmail;
+    });
 
     if (!matchedUser) {
       return { ok: false, message: 'Akun belum ditemukan. Coba daftar dulu atau pakai akun demo yang tersedia.' };
@@ -224,7 +302,7 @@ export default function App() {
       <WelcomePage
         onOpenLogin={() => setAuthStage('login')}
         onOpenRegister={() => setAuthStage('register')}
-        onEnterDemo={() => handleLogin({ email: 'admin@thinker.ai', password: 'thinker-demo' })}
+        onEnterDemo={() => handleLogin({ email: 'admin@cognitiva.ai', password: 'cognitiva-demo' })}
       />
     );
   };
@@ -244,9 +322,11 @@ export default function App() {
       <Sidebar 
         activePage={activePage} 
         setActivePage={setActivePage} 
-        activeAgent={activeAgent} 
         userRole={userRole} 
-        setUserRole={handleRoleChange} 
+        authUser={authUser}
+        chatHistory={STUDENT_CHAT_HISTORY}
+        selectedHistoryId={selectedHistoryId}
+        onSelectHistory={setSelectedHistoryId}
         onLogout={handleLogout}
       />
 
@@ -255,7 +335,11 @@ export default function App() {
         {userRole === 'student' && (
           <>
             {activePage === 'chat' && (
-              <MainContent activeAgent={activeAgent} onReflectionComplete={triggerReflectionSuccess} />
+              <MainContent
+                activeAgent={activeAgent}
+                onReflectionComplete={triggerReflectionSuccess}
+                historySession={selectedHistorySession}
+              />
             )}
             {activePage === 'skill' && (
               <SkillPage setActivePage={setActivePage} activeAgent={activeAgent} setActiveAgent={setActiveAgent} />

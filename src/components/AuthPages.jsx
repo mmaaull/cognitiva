@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight, BookOpen, CheckCircle2, Fingerprint, LogIn, LockKeyhole, Mail, ShieldCheck, Sparkles, UserPlus } from 'lucide-react';
+import logoIcon from '../assets/Logo.png';
 
 function AuthShell({ eyebrow, title, description, children, footer, badge, onBack }) {
   return (
@@ -9,12 +10,21 @@ function AuthShell({ eyebrow, title, description, children, footer, badge, onBac
         <div className="relative grid gap-8 lg:grid-cols-[1.05fr_0.95fr] p-6 sm:p-10">
           <section className="rounded-[28px] bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 text-white p-7 sm:p-10 flex flex-col justify-between min-h-[560px] shadow-xl">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-50">
+              <div className="inline-flex items-center gap-3">
+                <img src={logoIcon} alt="Cognitiva Logo" className="h-10 w-auto object-contain shrink-0" />
+                <div className="min-w-0">
+                  <p className="text-base font-bold leading-tight text-white">Cognitiva</p>
+                  <p className="text-[10px] leading-tight text-white/80">
+                    (Cognitive Guidance and Intelligent Thinking Assistant)
+                  </p>
+                </div>
+              </div>
+              <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-50">
                 <Sparkles size={12} />
                 {eyebrow}
               </div>
               <h1 className="mt-6 max-w-lg text-4xl font-semibold tracking-tight sm:text-5xl">
-                THINKER AI untuk alur belajar yang lebih terarah.
+                Cognitiva untuk alur belajar yang lebih terarah.
               </h1>
               <p className="mt-4 max-w-xl text-sm leading-7 text-emerald-50/85 sm:text-base">
                 {description}
@@ -66,7 +76,7 @@ function AuthShell({ eyebrow, title, description, children, footer, badge, onBac
 export function WelcomePage({ onOpenLogin, onOpenRegister, onEnterDemo }) {
   return (
     <AuthShell
-      eyebrow="THINKER AI Public Access"
+      eyebrow="Cognitiva Public Access"
       badge="Landing"
       onBack={undefined}
       description="Platform ini menyatukan pembelajaran berbasis refleksi, kontrol anti-copy-paste, dan sinkronisasi multi-role untuk skenario demo edukasi."
@@ -111,8 +121,8 @@ export function WelcomePage({ onOpenLogin, onOpenRegister, onEnterDemo }) {
 }
 
 export function LoginPage({ onBack, onOpenRegister, onLogin }) {
-  const [email, setEmail] = useState('admin@thinker.ai');
-  const [password, setPassword] = useState('thinker-demo');
+  const [email, setEmail] = useState('admin@cognitiva.ai');
+  const [password, setPassword] = useState('cognitiva-demo');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = (event) => {
@@ -136,7 +146,7 @@ export function LoginPage({ onBack, onOpenRegister, onLogin }) {
       eyebrow="Secure Sign In"
       badge="Login"
       onBack={onBack}
-      description="Masuk untuk membuka dashboard THINKER AI, melihat history chat, dan mengaktifkan mode multi-role untuk simulasi juri atau dosen."
+      description="Masuk untuk membuka dashboard Cognitiva, melihat history chat, dan mengakses mode sesuai role akun Anda."
       footer={
         <div className="mt-6 flex items-center justify-between gap-3 text-sm text-slate-600">
           <span>Belum punya akun?</span>
@@ -165,10 +175,10 @@ export function LoginPage({ onBack, onOpenRegister, onLogin }) {
           </p>
         )}
         <p className="text-xs leading-6 text-slate-500">
-          Akun demo tersedia: <span className="font-semibold text-slate-700">admin@thinker.ai</span> atau <span className="font-semibold text-slate-700">student@thinker.ai</span> dengan password <span className="font-semibold text-slate-700">thinker-demo</span>.
+          Akun demo tersedia: <span className="font-semibold text-slate-700">admin@cognitiva.ai</span> atau <span className="font-semibold text-slate-700">student@cognitiva.ai</span> dengan password <span className="font-semibold text-slate-700">cognitiva-demo</span>.
         </p>
         <button type="submit" className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-emerald-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-200 transition hover:bg-emerald-700">
-          Masuk ke THINKER AI
+          Masuk ke Cognitiva
           <LogIn size={16} />
         </button>
       </form>

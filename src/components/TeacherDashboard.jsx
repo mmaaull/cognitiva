@@ -10,13 +10,13 @@ export default function TeacherDashboard({ activeTab, setActiveTab }) {
   ];
 
   return (
-    <div className="h-full w-full p-8 flex flex-col overflow-y-auto font-sans bg-[#F4F6F3] animate-in fade-in duration-200">
+    <div className="h-full w-full p-8 flex flex-col overflow-y-auto font-sans bg-gradient-to-br from-[#F4F9F6] via-[#F4F6F3] to-[#EEF4F8] animate-in fade-in duration-200">
       
       {/* Header Dashboard Dosen */}
       <div className="w-full max-w-4xl mx-auto mb-8 flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Lecturer Control Panel</h1>
-          <p className="text-sm text-gray-500">Memantau kejujuran akademik, log penalaran, dan indeks ketergantungan AI kelas secara kolektif.</p>
+          <p className="text-sm text-gray-500">Panel Cognitiva untuk memantau log penalaran, integritas akademik, dan progres berpikir kelas.</p>
         </div>
         <div className="flex gap-2">
           <span className="px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold border border-emerald-200 rounded-full flex items-center gap-1.5">
@@ -32,21 +32,21 @@ export default function TeacherDashboard({ activeTab, setActiveTab }) {
           
           {/* Bar Data Ringkasan */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-white border border-[#DCE3DD] rounded-2xl p-5 shadow-xs">
+            <div className="bg-white/95 backdrop-blur border border-[#DCE3DD] rounded-2xl p-5 shadow-sm">
               <span className="text-gray-400 font-bold text-[10px] uppercase">Rerata Ketergantungan AI</span>
               <p className="text-2xl font-black text-red-600 mt-2">54.3%</p>
               <div className="w-full h-1.5 bg-gray-100 rounded-full mt-2 overflow-hidden">
                 <div className="w-[54%] h-full bg-red-500 rounded-full" />
               </div>
             </div>
-            <div className="bg-white border border-[#DCE3DD] rounded-2xl p-5 shadow-xs">
+            <div className="bg-white/95 backdrop-blur border border-[#DCE3DD] rounded-2xl p-5 shadow-sm">
               <span className="text-gray-400 font-bold text-[10px] uppercase">Rerata Berpikir Kritis</span>
               <p className="text-2xl font-black text-emerald-600 mt-2">81.3/100</p>
               <div className="w-full h-1.5 bg-gray-100 rounded-full mt-2 overflow-hidden">
                 <div className="w-[81%] h-full bg-emerald-500 rounded-full" />
               </div>
             </div>
-            <div className="bg-white border border-[#DCE3DD] rounded-2xl p-5 shadow-xs">
+            <div className="bg-white/95 backdrop-blur border border-[#DCE3DD] rounded-2xl p-5 shadow-sm">
               <span className="text-gray-400 font-bold text-[10px] uppercase">Anomali Copy-Paste Diterkam</span>
               <p className="text-2xl font-black text-amber-600 mt-2">1 Kasus</p>
               <p className="text-[10px] text-amber-600 font-semibold mt-1">⚠️ Segera evaluasi log siswa terkait</p>
@@ -54,7 +54,7 @@ export default function TeacherDashboard({ activeTab, setActiveTab }) {
           </div>
 
           {/* Tabel Utama Monitoring Siswa */}
-          <div className="bg-white border border-[#DCE3DD] rounded-2xl p-5 shadow-xs">
+          <div className="bg-white/95 backdrop-blur border border-[#DCE3DD] rounded-2xl p-5 shadow-sm">
             <h3 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2">
               <Users size={16} className="text-gray-500" />
               Daftar Rekam Kognitif Mahasiswa (Kelas A)
@@ -105,7 +105,7 @@ export default function TeacherDashboard({ activeTab, setActiveTab }) {
 
       {/* VIEW TABS 2: THINKING PROCESS LOG */}
       {activeTab === 'teacher-logs' && (
-        <div className="w-full max-w-4xl mx-auto bg-white border border-[#DCE3DD] rounded-2xl p-6 shadow-xs flex flex-col gap-5">
+        <div className="w-full max-w-4xl mx-auto bg-white/95 backdrop-blur border border-[#DCE3DD] rounded-2xl p-6 shadow-sm flex flex-col gap-5">
           <div className="border-b border-gray-100 pb-3">
             <h3 className="text-sm font-bold text-gray-900 flex items-center gap-2">
               <FileText size={16} className="text-blue-500" />

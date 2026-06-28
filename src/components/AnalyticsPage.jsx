@@ -12,19 +12,22 @@ export default function AnalyticsPage({ analyticsData }) {
   const status = getDependencyStatus(analyticsData.dependencyIndex);
 
   return (
-    <div className="h-full w-full p-8 flex flex-col overflow-y-auto font-sans bg-[#F4F6F3] animate-in fade-in duration-200">
+    <div className="h-full w-full p-8 flex flex-col overflow-y-auto font-sans bg-gradient-to-br from-[#F4F9F6] via-[#F4F6F3] to-[#EEF4F8] animate-in fade-in duration-200">
       
       {/* Header Dashboard */}
       <div className="w-full max-w-3xl mx-auto mb-8">
+        <div className="inline-flex items-center gap-2 mb-3 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[10px] font-bold tracking-wider uppercase text-emerald-700">
+          Cognitiva Insights
+        </div>
         <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Cognitive Offloading Analytics</h1>
-        <p className="text-sm text-gray-500">Hasil log evaluasi kemandirian berpikir kritis siswa berdasarkan kalkulasi sistem Guardrail.</p>
+        <p className="text-sm text-gray-500">Pantau perkembangan berpikir kritis, risiko ketergantungan AI, dan konsistensi refleksi belajar.</p>
       </div>
 
       {/* Grid Statistik Angka */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-3xl mx-auto mb-6">
         
         {/* Card 1: AI Dependency Index */}
-        <div className="bg-white border border-[#DCE3DD] rounded-2xl p-5 shadow-xs">
+        <div className="bg-white/90 backdrop-blur border border-[#DCE3DD] rounded-2xl p-5 shadow-sm hover:shadow-md transition">
           <div className="flex justify-between items-start text-gray-400">
             <Percent size={18} className="text-red-500" />
             <span className={`text-[10px] font-bold border px-1.5 py-0.5 rounded ${status.color}`}>{status.label}</span>
@@ -34,7 +37,7 @@ export default function AnalyticsPage({ analyticsData }) {
         </div>
 
         {/* Card 2: Critical Thinking Score */}
-        <div className="bg-white border border-[#DCE3DD] rounded-2xl p-5 shadow-xs">
+        <div className="bg-white/90 backdrop-blur border border-[#DCE3DD] rounded-2xl p-5 shadow-sm hover:shadow-md transition">
           <div className="flex justify-between items-start text-gray-400">
             <Award size={18} className="text-emerald-500" />
             <span className="text-[10px] text-gray-500 font-bold bg-gray-100 px-1.5 py-0.5 rounded">SKOR</span>
@@ -44,7 +47,7 @@ export default function AnalyticsPage({ analyticsData }) {
         </div>
 
         {/* Card 3: Aktivitas Berpikir */}
-        <div className="bg-white border border-[#DCE3DD] rounded-2xl p-5 shadow-xs">
+        <div className="bg-white/90 backdrop-blur border border-[#DCE3DD] rounded-2xl p-5 shadow-sm hover:shadow-md transition">
           <div className="flex justify-between items-start text-gray-400">
             <ShieldCheck size={18} className="text-blue-500" />
             <ArrowUpRight size={14} />
@@ -56,7 +59,7 @@ export default function AnalyticsPage({ analyticsData }) {
       </div>
 
       {/* Detail Grafik Visualisasi Batang Pure Tailwind */}
-      <div className="w-full max-w-3xl mx-auto bg-white border border-[#DCE3DD] rounded-2xl p-6 shadow-xs flex flex-col gap-6">
+      <div className="w-full max-w-3xl mx-auto bg-white/95 backdrop-blur border border-[#DCE3DD] rounded-2xl p-6 shadow-sm flex flex-col gap-6">
         <div>
           <h3 className="text-sm font-bold text-gray-900">Grafik Parameter Kognitif</h3>
           <p className="text-xs text-gray-400 mt-0.5">Semakin sering Anda menyelesaikan intervensi refleksi, Indeks Ketergantungan AI Anda akan menurun.</p>
