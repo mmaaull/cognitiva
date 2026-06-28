@@ -1,16 +1,55 @@
-# React + Vite
+# Cognitiva
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Cognitiva adalah aplikasi web interaktif berbasis **React + Vite** yang dirancang untuk mendukung pembelajaran reflektif dan interaksi multi-role antara **student** dan **teacher**.
 
-Currently, two official plugins are available:
+## Fitur utama
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Autentikasi sederhana**: welcome, login, register, dan demo login.
+- **Multi-role experience**: tampilan berbeda untuk student dan teacher.
+- **Student dashboard**:
+  - Chat / refleksi dengan agent.
+  - Skill page untuk memilih atau mengganti agent.
+  - Analytics page untuk melihat progres refleksi.
+- **Teacher dashboard**:
+  - Dashboard khusus untuk guru/dosen.
+  - Navigasi tab yang disesuaikan untuk role teacher.
+- **Penyimpanan lokal**: data login demo dan status auth disimpan di `localStorage`.
+- **UI modern**: menggunakan **Tailwind CSS**, animasi ringan, dan desain responsif.
 
-## React Compiler
+## Teknologi yang digunakan
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19
+- Vite 8
+- Tailwind CSS 4
+- Lucide React
+- ESLint
 
-## Expanding the ESLint configuration
+## Struktur project
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `src/App.jsx` — logika utama aplikasi, autentikasi, dan routing UI berbasis role.
+- `src/components/` — kumpulan komponen halaman seperti sidebar, auth pages, dashboard, dan agent pages.
+- `src/index.css` — styling global dan animasi.
+- `src/App.css` — style tambahan dari template awal.
+
+## Menjalankan project
+
+```bash
+npm install
+npm run dev
+```
+
+## Build production
+
+```bash
+npm run build
+```
+
+## Preview hasil build
+
+```bash
+npm run preview
+```
+
+## Catatan
+
+Project ini saat ini masih berfokus pada pengalaman demo/interaktif lokal. Data autentikasi dan user disimpan di browser, bukan di backend.
